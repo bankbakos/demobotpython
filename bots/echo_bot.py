@@ -14,20 +14,20 @@ class EchoBot(ActivityHandler):
                 await turn_context.send_activity("Hello and welcome!")
 
     async def on_message_activity(self, turn_context: TurnContext):
-        transfer = [{
+        transfer = {
 "type": "message",
 "text": "I'll transfer you to a human agent",
 "channelData": {
     "action": {
         "name": "TRANSFER",
         "parameters": {
-            "skill": "3369363250"
+            "skill": "human-expert"
         }
     }
 }          
-}]
+}
         if (turn_context.activity.text == "agent"):
-            return await turn_context.send_activity(MessageFactory.text(transfer[0]))
+            return await turn_context.send_activity(MessageFactory.text(transfer))
 
         return await turn_context.send_activity(
             MessageFactory.text(f"Echo: {turn_context.activity.text}")
