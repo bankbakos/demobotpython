@@ -26,8 +26,8 @@ class EchoBot(ActivityHandler):
     }
 }          
 }]
-        if (turn_context.activity.text == "agnet"):
-            return await turn_context.send_activity(MessageFactory.text(transfer))
+        if (turn_context.activity.text == "agent"):
+            return await turn_context.send_activity(MessageFactory.text(transfer[0]))
 
         return await turn_context.send_activity(
             MessageFactory.text(f"Echo: {turn_context.activity.text}")
