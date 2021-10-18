@@ -3,7 +3,7 @@
 
 from botbuilder.core import ActivityHandler, MessageFactory, TurnContext
 from botbuilder.schema import ChannelAccount
-
+import json
 
 class EchoBot(ActivityHandler):
     async def on_members_added_activity(
@@ -14,7 +14,8 @@ class EchoBot(ActivityHandler):
                 await turn_context.send_activity("Hello and welcome!")
 
     async def on_message_activity(self, turn_context: TurnContext):
-        transfer = {
+    
+        transfer = json.dumps({
 "type": "message",
 "text": "I'll transfer you to a human agent",
 "channelData": {
@@ -24,8 +25,8 @@ class EchoBot(ActivityHandler):
             "skill": "human-expert"
         }
     }
-}          
 }
+})
         if (turn_context.activity.text == "agent"):
             return await turn_context.send_activity(MessageFactory.text(transfer))
 
