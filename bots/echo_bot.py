@@ -15,36 +15,6 @@ class EchoBot(ActivityHandler):
 
     async def on_message_activity(self, turn_context: TurnContext):
     
-        transfer = json.dumps({
-"type": "message",
-"text": "I'll transfer you to a human agent",
-"channelData": {
-    "action": {
-        "name": "TRANSFER",
-        "parameters": {
-            "skill": "Azure_test_human_skill"
-        }
-    }
-}
-})
-        transferSkill = json.dumps({
-"type": "message",
-"text": "I'll transfer you to a human agent",
-"channelData": {
-    "action": {
-        "name": "TRANSFER",
-        "parameters": {
-            "skill": "3369363250"
-        }
-    }
-}
-})
-        if (turn_context.activity.text == "agent"):
-            return await turn_context.send_activity(MessageFactory.text(transfer))
-
-        if (turn_context.activity.text == "agentskill"):
-            return await turn_context.send_activity(MessageFactory.text(transferSkill))
-
         return await turn_context.send_activity(
-            MessageFactory.text(f"Echo: {turn_context.activity.text}")
+            MessageFactory.text(f"Echo: {turn_context.activity}")
         )
